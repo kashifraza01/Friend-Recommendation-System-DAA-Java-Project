@@ -11,19 +11,19 @@ public class Kashif extends JFrame {
     JTextArea resultwalaarea;
     JTextField userfield;
 
-    HashMap<String, HashSet<String>> graphdata;
+    HashMap<String,HashSet<String>> graphdata;
 
-    public Kashif() {
-        graphdata = new HashMap<>();
+    public Kashif(){
+        graphdata=new HashMap<>();
 
         setTitle("Friend Recommendation System");
-        setSize(650, 550);
+        setSize(650,550);
         setLayout(new BorderLayout());
 
-        JLabel title = new JLabel("Graph Based Friend Recommendation System",
+        JLabel title=new JLabel("Graph Based Friend Recommendation System",
                 JLabel.CENTER);
-        title.setFont(new Font("Arial", Font.BOLD, 18));
-        add(title, BorderLayout.NORTH);
+        title.setFont(new Font("Arial",Font.BOLD,18));
+        add(title,BorderLayout.NORTH);
 
         JPanel centerpanel = new JPanel();
         centerpanel.setLayout(new GridLayout(1, 2));
@@ -101,61 +101,60 @@ public class Kashif extends JFrame {
         HashMap<String, Integer> suggestionmap = new HashMap<>();
         HashSet<String> currentuserfriends = graphdata.get(currentuser);
 
-        for (String friend : currentuserfriends) {
-            HashSet<String> friendsoffriend = graphdata.get(friend);
+        for(String friend:currentuserfriends){
+            HashSet<String> friendsoffriend=graphdata.get(friend);
 
-            for (String potentialfriend : friendsoffriend) {
-                if (potentialfriend.equals(currentuser)) continue;
-                if (currentuserfriends.contains(potentialfriend)) continue;
+            for(String potentialfriend:friendsoffriend) {
+                if(potentialfriend.equals(currentuser)) continue;
+                if(currentuserfriends.contains(potentialfriend)) continue;
 
-                int count = mutualfriendcount(currentuser, potentialfriend);
-                suggestionmap.put(potentialfriend, count);
+                int count=mutualfriendcount(currentuser,potentialfriend);
+                suggestionmap.put(potentialfriend,count);
             }
         }
 
-        ArrayList<String> userlist = new ArrayList<>(suggestionmap.keySet());
-        for (int i = 0; i < userlist.size(); i++) {
-            for (int j = i + 1; j < userlist.size(); j++) {
-                String name1 = userlist.get(i);
-                String name2 = userlist.get(j);
+        ArrayList<String> userlist= new ArrayList<>(suggestionmap.keySet());
+        for(int i=0;i<userlist.size();i++){
+            for(int j=i+1;j<userlist.size();j++){
+                String name1=userlist.get(i);
+                String name2=userlist.get(j);
 
-                int val1 = suggestionmap.get(name1);
-                int val2 = suggestionmap.get(name2);
+                int val1=suggestionmap.get(name1);
+                int val2=suggestionmap.get(name2);
 
-                if (val2 > val1) {
-                    userlist.set(i, name2);
-                    userlist.set(j, name1);
+                if(val2>val1){
+                    userlist.set(i,name2);
+                    userlist.set(j,name1);
                 }
             }
         }
 
-        StringBuilder finaloutput = new StringBuilder();
-        for (String name : userlist) {
-            int score = suggestionmap.get(name);
+        StringBuilder finaloutput= new StringBuilder();
+        for(String name:userlist){
+            int score=suggestionmap.get(name);
             finaloutput.append(name)
                        .append(" -> mutual friends: ")
                        .append(score)
                        .append("\n");
         }
 
-        if (finaloutput.toString().isEmpty()) {
+        if(finaloutput.toString().isEmpty()){
             resultwalaarea.setText("No recommendations found.");
-        } else {
+        }else{
             resultwalaarea.setText(finaloutput.toString());
         }
     }
 
-    int mutualfriendcount(String u1, String u2) {
-        HashSet<String> set1 = graphdata.get(u1);
-        HashSet<String> set2 = graphdata.get(u2);
-        int count = 0;
+    int mutualfriendcount(String u1,String u2){
+        HashSet<String> set1=graphdata.get(u1);
+        HashSet<String> set2=graphdata.get(u2);
+        int count=0;
 
-        for (String s : set1) {
-            if (set2.contains(s)) count++;
+        for(String s:set1){
+            if(set2.contains(s)) count++;
         }
         return count;
     }
-
     public static void main(String[] args) {
         new Kashif();
     }
