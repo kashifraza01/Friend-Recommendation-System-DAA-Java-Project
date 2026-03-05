@@ -26,6 +26,13 @@ This project simulates how social media platforms recommend friends using **mutu
 
 ---
 
+## 📷 Screenshots
+
+![Recommendation Output](ss1.png)
+
+![No Recommendation Output](ss2.png)
+
+
 ## 🧠 How It Works
 
 1. Users enter friendship pairs in this format:
