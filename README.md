@@ -28,9 +28,7 @@ This project simulates how social media platforms recommend friends using **mutu
 
 ## 📷 Screenshots
 
-## Screenshots
-
-| Game Running                             | Game Over                                 |
+| Friend Recommendation                    |  No Friend Recommendation                 |
 | ---------------------------------------- | ----------------------------------------- |
 | ![Screenshot1](./ss1.png) | ![Screenshot2](./ss2.png) |
 
