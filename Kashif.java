@@ -53,11 +53,7 @@ public class Kashif extends JFrame{
 
         add(bottompanel,BorderLayout.SOUTH);
 
-        checkbutton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                processshurukaro();
-            }
-        });
+        checkbutton.addActionListener(e -> processshurukaro());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
@@ -70,7 +66,7 @@ public class Kashif extends JFrame{
 
         for(String line:lines){
             line=line.trim();
-            if(line.length()==0) continue;
+            if(line.isEmpty()) continue;
 
             String[] users=line.split(" ");
             if(users.length==2){
